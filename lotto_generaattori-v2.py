@@ -21,13 +21,11 @@ number_stats = defaultdict(int)
 i = 0
 amount = 1000000
 while i < amount:
-#while i < sys.maxsize:
 	i = i + 1
 	rnd_list = generate_lotto_numbers()
 	for numb in rnd_list:
 		number_stats[numb] += 1
 plt.plot(number_stats.keys(), number_stats.values())
-#sorted_numbers = sorted(number_stats.items(), key=operator.itemgetter(1))
 print("Num     Count      %")
 print("--------------------")
 for w in sorted(number_stats, key=number_stats.get, reverse=True):
