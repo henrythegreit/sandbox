@@ -2,6 +2,7 @@ import random
 import sys
 from collections import defaultdict
 import operator
+import matplotlib.pyplot as plt
 
 def generate_lotto_numbers():
 	x = 0
@@ -17,17 +18,21 @@ def generate_lotto_numbers():
 	return rand_list;
 
 number_stats = defaultdict(int)
-j = 0
 i = 0
-while i < 10000:
+amount = 1000000
+while i < amount:
 #while i < sys.maxsize:
 	i = i + 1
 	rnd_list = generate_lotto_numbers()
 	for numb in rnd_list:
 		number_stats[numb] += 1
-
+plt.plot(number_stats.keys(), number_stats.values())
 #sorted_numbers = sorted(number_stats.items(), key=operator.itemgetter(1))
+print("Num     Count      %")
+print("--------------------")
 for w in sorted(number_stats, key=number_stats.get, reverse=True):
-	print("{0:2d} {1:10d}".format(w, number_stats[w]))
-#	for v in sorted_numbers:
-#	print(v)
+	value = (float(number_stats[w]) / float(amount)) * 100.0
+	print("{0:2d} {1:10d}  {2:4.2f}".format(w, number_stats[w], value))
+	if(i == 0):
+		break;
+plt.show()
